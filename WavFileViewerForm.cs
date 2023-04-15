@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WavFileViewer
 {
-    public partial class Form1 : Form
+    public partial class WavFileViewerForm : Form
     {
-        public Form1()
+        public WavFileViewerForm()
         {
             InitializeComponent();
         }
@@ -24,8 +24,19 @@ namespace WavFileViewer
 
             if (of1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                textBox1.Text = of1.SafeFileName;
+                textBox1.Text = of1.FileName;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            WavFilev wf = new WavFilev(textBox1.Text);
+
+            formsPlot1.Plot.AddSignal(wf.audioData, wf.sampelingRate);
+            formsPlot1.Plot.XLabel("Time in seconds [S]");
+            formsPlot1.Plot.YLabel("Magnitude");
+            formsPlot1.Plot.Title("Wav data");
+            formsPlot1.Refresh();
         }
     }
 }
