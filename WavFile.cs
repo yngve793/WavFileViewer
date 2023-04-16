@@ -15,12 +15,21 @@ namespace WavFileViewer
         public readonly double[] audioData;
         public readonly int sampelingRate;
 
+        /// <summary>
+        /// Constructor used to read wav files
+        /// </summary>
+        /// <param name="fileName">Name of the file with full path</param>
         public WavFilev(string fileName)
         {
             this.fileName = fileName;
             (this.audioData, this.sampelingRate) = WavFilev.ReadWav(this.fileName);
         }
 
+        /// <summary>
+        /// Constructor for synthetically generated data
+        /// </summary>
+        /// <param name="data">The signal</param>
+        /// <param name="sampelingRate">Sampling rate</param>
         public WavFilev(double[] data, int sampelingRate)
         {
             this.audioData = data;
@@ -43,61 +52,74 @@ namespace WavFileViewer
             }
         }
 
+        /// <summary>
+        /// Signal duration
+        /// </summary>
         public double Duration => (double)this.audioData.Length / (double)this.sampelingRate;
 
-        public double BinSize => ((double)this.sampelingRate / (double)this.audioData.Length);
-
+        /// <summary>
+        /// Nyquist frequency
+        /// </summary>
         public int Nyquist => (int)(this.sampelingRate / 2);
 
-        public double[] FrequencyVector(int VectorLength)
-        {
-
-            double bs = (double)this.Nyquist / (double)(VectorLength * this.Duration);
-            double[] freq_vector = new double[VectorLength];
-            for (int i = 0; i < freq_vector.Length; i++)
-            {
-                freq_vector[i] = i * bs;
-            }
-            return freq_vector;
-        }
-
-
+        /// <summary>
+        /// Highest power of two that fits in the audioData array. 
+        /// </summary>
         public int Power2Length
         {
             get
             {
                 double power2 = Math.Log(this.audioData.Length, 2);
-                return (int)Math.Ceiling(power2);
+                return (int)Math.Floor(power2);
             }
         }
 
-
-        public double[] DiscreteFourierTransform()
+        /// <summary>
+        /// Uses the FFT function in FftSharp to transform to the frequency domain. 
+        /// FftSharp library only handles arrays of size that is a power of two. 
+        /// Hanning window is applied to the signal to reduce ripples.
+        /// </summary>
+        /// <returns>Real part of the frequency domain:double[], frequency vector:double[]</returns>
+        public (double[], double[]) DiscreteFourierTransform()
         {
+            // Only power of 2 length can be used
 
-            // Shape the signal using a Hanning window
+            // Create a new array of appropriate length 
+            double[] signal = new double[(int)Math.Pow(2, this.Power2Length)];
+
+            // Copy data 
+            Array.Copy(this.audioData, signal, signal.Length);
+
+            // Apply window
             var window = new FftSharp.Windows.Hanning();
-
-            double[] signal = new double[this.audioData.Length];
-            Array.Copy(this.audioData, signal, this.audioData.Length);
             window.ApplyInPlace(signal);
 
+            // Convert to complex 
+            Complex[] c_signal = Transform.MakeComplex(signal);
 
-            // Adjust to power of 2
-            double[] signal_p2 = new double[(int)Math.Pow(2, this.Power2Length+1)];
-            Array.Copy(signal, signal_p2, this.audioData.Length);
-            
-            double[] fftPwr = Transform.FFTpower(signal_p2);
+            // Preform the transform
+            Transform.FFT(c_signal);
 
-            double[] out_data = new double[(int)fftPwr.Length/2];
-            for (int i= 0; i < out_data.Length; i++)
-            {
-                out_data[i] = fftPwr[i];
-            }
-            return out_data;
+            // Extract the absolute value
+            var abs_signal = Transform.Absolute(c_signal);
+
+            // Copy non negative components
+            double[] out_signal = new double[(int)(abs_signal.Length / 2)];
+            Array.Copy(abs_signal, out_signal, out_signal.Length);
+
+            // Calculate frequency array 
+            double[] x_freq = Transform.FFTfreq(this.sampelingRate, out_signal, true);
+
+
+            return (out_signal, x_freq);
         }
 
-
+        /// <summary>
+        /// Estimate power level through the data set
+        /// TODO: Fix ends. Energy start out at zero in the current version
+        /// </summary>
+        /// <param name="halfWindow">Defines the size of the sliding window</param>
+        /// <returns>power level:double[]</returns>
         public double[] PowerLevel(int halfWindow)
         {
             double[] powerLevel = new double[this.audioData.Length];
@@ -116,7 +138,11 @@ namespace WavFileViewer
             return powerLevel;
         }
 
-
+        /// <summary>
+        /// Read waveform and sampling rate from a *.wav file
+        /// </summary>
+        /// <param name="filePath">Name of the file with full path</param>
+        /// <returns>audio:double[] and sampling-rate:int</returns>
         static (double[] audio, int sampleRate) ReadWav(string filePath)
         {
             var afr = new NAudio.Wave.AudioFileReader(filePath);
