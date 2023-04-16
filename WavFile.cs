@@ -8,7 +8,7 @@ using FftSharp;
 
 namespace WavFileViewer
 {
-    class WavFilev
+    class WavFile
     {
 
         public readonly string fileName;
@@ -19,10 +19,10 @@ namespace WavFileViewer
         /// Constructor used to read wav files
         /// </summary>
         /// <param name="fileName">Name of the file with full path</param>
-        public WavFilev(string fileName)
+        public WavFile(string fileName)
         {
             this.fileName = fileName;
-            (this.audioData, this.sampelingRate) = WavFilev.ReadWav(this.fileName);
+            (this.audioData, this.sampelingRate) = WavFile.ReadWav(this.fileName);
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace WavFileViewer
         /// </summary>
         /// <param name="data">The signal</param>
         /// <param name="sampelingRate">Sampling rate</param>
-        public WavFilev(double[] data, int sampelingRate)
+        public WavFile(double[] data, int sampelingRate)
         {
             this.audioData = data;
             this.sampelingRate = sampelingRate;
@@ -49,6 +49,23 @@ namespace WavFileViewer
                     power += value * value;
                 }
                 return power / this.audioData.Length;
+            }
+        }
+
+        /// <summary>
+        /// Calculate the RMS value for the signal
+        /// </summary>
+        public double RMS
+        {
+            get
+            {
+                double rms = 0;
+                foreach (double value in this.audioData)
+                {
+                    rms += value * value;
+                }
+                rms /= this.audioData.Length;
+                return Math.Sqrt(rms);
             }
         }
 

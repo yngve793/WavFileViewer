@@ -29,14 +29,14 @@ namespace WavFileViewer
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WavFileViewerForm));
+            this.textBoxFileName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.formsPlot1 = new ScottPlot.FormsPlot();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.formsPlot2 = new ScottPlot.FormsPlot();
+            this.buttonLoadWav = new System.Windows.Forms.Button();
+            this.formsPlotTime = new ScottPlot.FormsPlot();
+            this.formsPlotFrequency = new ScottPlot.FormsPlot();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonAppend = new System.Windows.Forms.Button();
             this.generateButton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -44,17 +44,27 @@ namespace WavFileViewer
             this.textBox_freq = new System.Windows.Forms.TextBox();
             this.textBox_duration = new System.Windows.Forms.TextBox();
             this.textBox_fs = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBoxRmsValueInData = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxDurationInData = new System.Windows.Forms.TextBox();
+            this.textBoxNrSamplesInData = new System.Windows.Forms.TextBox();
+            this.textBoxFsInData = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // textBoxFileName
             // 
-            this.textBox1.Location = new System.Drawing.Point(80, 39);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(302, 26);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "C:\\Users\\yngve\\Documents\\demo.wav";
-            this.textBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseUp);
+            this.textBoxFileName.Location = new System.Drawing.Point(80, 39);
+            this.textBoxFileName.Name = "textBoxFileName";
+            this.textBoxFileName.Size = new System.Drawing.Size(302, 26);
+            this.textBoxFileName.TabIndex = 0;
+            this.textBoxFileName.Text = "C:\\Users\\yngve\\Documents\\demo.wav";
+            this.textBoxFileName.MouseUp += new System.Windows.Forms.MouseEventHandler(this.textBoxFileName_MouseUp);
             // 
             // label1
             // 
@@ -65,50 +75,35 @@ namespace WavFileViewer
             this.label1.TabIndex = 1;
             this.label1.Text = "Selected file";
             // 
-            // button1
+            // buttonLoadWav
             // 
-            this.button1.Location = new System.Drawing.Point(388, 33);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 38);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Load";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonLoadWav.Location = new System.Drawing.Point(388, 33);
+            this.buttonLoadWav.Name = "buttonLoadWav";
+            this.buttonLoadWav.Size = new System.Drawing.Size(75, 32);
+            this.buttonLoadWav.TabIndex = 2;
+            this.buttonLoadWav.Text = "Load";
+            this.buttonLoadWav.UseVisualStyleBackColor = true;
+            this.buttonLoadWav.Click += new System.EventHandler(this.buttonLoadWav_Click);
             // 
-            // formsPlot1
+            // formsPlotTime
             // 
-            this.formsPlot1.Location = new System.Drawing.Point(14, 78);
-            this.formsPlot1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.formsPlot1.Name = "formsPlot1";
-            this.formsPlot1.Size = new System.Drawing.Size(856, 256);
-            this.formsPlot1.TabIndex = 3;
+            this.formsPlotTime.Location = new System.Drawing.Point(14, 78);
+            this.formsPlotTime.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.formsPlotTime.Name = "formsPlotTime";
+            this.formsPlotTime.Size = new System.Drawing.Size(856, 256);
+            this.formsPlotTime.TabIndex = 3;
             // 
-            // textBox2
+            // formsPlotFrequency
             // 
-            this.textBox2.Location = new System.Drawing.Point(885, 133);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(124, 26);
-            this.textBox2.TabIndex = 5;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(878, 110);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 20);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Calculated power";
-            // 
-            // formsPlot2
-            // 
-            this.formsPlot2.Location = new System.Drawing.Point(14, 342);
-            this.formsPlot2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.formsPlot2.Name = "formsPlot2";
-            this.formsPlot2.Size = new System.Drawing.Size(856, 284);
-            this.formsPlot2.TabIndex = 7;
+            this.formsPlotFrequency.Location = new System.Drawing.Point(14, 342);
+            this.formsPlotFrequency.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.formsPlotFrequency.Name = "formsPlotFrequency";
+            this.formsPlotFrequency.Size = new System.Drawing.Size(856, 284);
+            this.formsPlotFrequency.TabIndex = 7;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonAppend);
             this.groupBox1.Controls.Add(this.generateButton);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
@@ -123,13 +118,24 @@ namespace WavFileViewer
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Calibration";
             // 
+            // buttonAppend
+            // 
+            this.buttonAppend.Enabled = false;
+            this.buttonAppend.Location = new System.Drawing.Point(131, 142);
+            this.buttonAppend.Name = "buttonAppend";
+            this.buttonAppend.Size = new System.Drawing.Size(103, 34);
+            this.buttonAppend.TabIndex = 18;
+            this.buttonAppend.Text = "Append";
+            this.buttonAppend.UseVisualStyleBackColor = true;
+            this.buttonAppend.Click += new System.EventHandler(this.buttonAppend_Click);
+            // 
             // generateButton
             // 
             this.generateButton.Location = new System.Drawing.Point(23, 142);
             this.generateButton.Name = "generateButton";
-            this.generateButton.Size = new System.Drawing.Size(174, 34);
+            this.generateButton.Size = new System.Drawing.Size(103, 34);
             this.generateButton.TabIndex = 13;
-            this.generateButton.Text = "Generate signal";
+            this.generateButton.Text = "Generate";
             this.generateButton.UseVisualStyleBackColor = true;
             this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
             // 
@@ -175,6 +181,7 @@ namespace WavFileViewer
             this.textBox_duration.Size = new System.Drawing.Size(56, 26);
             this.textBox_duration.TabIndex = 14;
             this.textBox_duration.Text = "2";
+            this.textBox_duration.TextChanged += new System.EventHandler(this.textBox_duration_TextChanged);
             // 
             // textBox_fs
             // 
@@ -183,24 +190,108 @@ namespace WavFileViewer
             this.textBox_fs.Size = new System.Drawing.Size(56, 26);
             this.textBox_fs.TabIndex = 13;
             this.textBox_fs.Text = "5000";
+            this.textBox_fs.TextChanged += new System.EventHandler(this.textBox_fs_TextChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.textBoxRmsValueInData);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.textBoxDurationInData);
+            this.groupBox2.Controls.Add(this.textBoxNrSamplesInData);
+            this.groupBox2.Controls.Add(this.textBoxFsInData);
+            this.groupBox2.Location = new System.Drawing.Point(878, 98);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(240, 190);
+            this.groupBox2.TabIndex = 18;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Signal Info";
+            // 
+            // textBoxRmsValueInData
+            // 
+            this.textBoxRmsValueInData.Location = new System.Drawing.Point(158, 126);
+            this.textBoxRmsValueInData.Name = "textBoxRmsValueInData";
+            this.textBoxRmsValueInData.Size = new System.Drawing.Size(56, 26);
+            this.textBoxRmsValueInData.TabIndex = 19;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 129);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 20);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "RMS value";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 65);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(107, 20);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Sampling rate";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 97);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(90, 20);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Duration [s]";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 33);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(146, 20);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Number of samples";
+            // 
+            // textBoxDurationInData
+            // 
+            this.textBoxDurationInData.Location = new System.Drawing.Point(158, 94);
+            this.textBoxDurationInData.Name = "textBoxDurationInData";
+            this.textBoxDurationInData.Size = new System.Drawing.Size(56, 26);
+            this.textBoxDurationInData.TabIndex = 15;
+            // 
+            // textBoxNrSamplesInData
+            // 
+            this.textBoxNrSamplesInData.Location = new System.Drawing.Point(158, 30);
+            this.textBoxNrSamplesInData.Name = "textBoxNrSamplesInData";
+            this.textBoxNrSamplesInData.Size = new System.Drawing.Size(56, 26);
+            this.textBoxNrSamplesInData.TabIndex = 14;
+            // 
+            // textBoxFsInData
+            // 
+            this.textBoxFsInData.Location = new System.Drawing.Point(158, 62);
+            this.textBoxFsInData.Name = "textBoxFsInData";
+            this.textBoxFsInData.Size = new System.Drawing.Size(56, 26);
+            this.textBoxFsInData.TabIndex = 13;
             // 
             // WavFileViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1134, 671);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.formsPlot2);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.formsPlot1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.formsPlotFrequency);
+            this.Controls.Add(this.formsPlotTime);
+            this.Controls.Add(this.buttonLoadWav);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxFileName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WavFileViewerForm";
             this.Text = "WavFileViewer";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,13 +299,11 @@ namespace WavFileViewer
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxFileName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private ScottPlot.FormsPlot formsPlot1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label2;
-        private ScottPlot.FormsPlot formsPlot2;
+        private System.Windows.Forms.Button buttonLoadWav;
+        private ScottPlot.FormsPlot formsPlotTime;
+        private ScottPlot.FormsPlot formsPlotFrequency;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button generateButton;
         private System.Windows.Forms.Label label7;
@@ -223,6 +312,16 @@ namespace WavFileViewer
         private System.Windows.Forms.TextBox textBox_freq;
         private System.Windows.Forms.TextBox textBox_duration;
         private System.Windows.Forms.TextBox textBox_fs;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox textBoxRmsValueInData;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBoxDurationInData;
+        private System.Windows.Forms.TextBox textBoxNrSamplesInData;
+        private System.Windows.Forms.TextBox textBoxFsInData;
+        private System.Windows.Forms.Button buttonAppend;
     }
 }
 
