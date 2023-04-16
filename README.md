@@ -145,7 +145,7 @@ Project Link: [https://github.com/yngve793/WavFileViewer](https://github.com/yng
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+Following NuGet packages are used in the project. 
 
 * [FftSharp](https://github.com/swharden/FftSharp)
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
