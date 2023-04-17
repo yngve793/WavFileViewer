@@ -23,7 +23,8 @@
     ·
     <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>![WaveFileViewer](https://user-images.githubusercontent.com/79855565/232421573-c68f79ef-d017-48fa-9c48-e60dec2f219e.png)
+
   </p>
 </div>
 
@@ -56,7 +57,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![WaveFileViewer](https://user-images.githubusercontent.com/79855565/232421697-d357e424-5e14-4cf0-9044-b75e893a5092.png)
 
 
 Windows application capable of plotting *.wav file signal and the descree forier transform of the signal. 
