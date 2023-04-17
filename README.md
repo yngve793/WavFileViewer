@@ -37,7 +37,7 @@
 ![WaveFileViewer](https://user-images.githubusercontent.com/79855565/232421697-d357e424-5e14-4cf0-9044-b75e893a5092.png)
 
 
-Windows application capable of plotting *.wav file signal and the descree forier transform of the signal. 
+Windows application capable of plotting *.wav file signal and the derived Fourier transform of the signal. 
 The project uses NAudio for reading *.wav files and ScottPlot for plotting. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
