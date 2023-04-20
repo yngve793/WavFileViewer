@@ -31,7 +31,6 @@ namespace WavFileViewer
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WavFileViewerForm));
             this.textBoxFileName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.buttonLoadWav = new System.Windows.Forms.Button();
             this.formsPlotTime = new ScottPlot.FormsPlot();
             this.formsPlotFrequency = new ScottPlot.FormsPlot();
@@ -53,31 +52,29 @@ namespace WavFileViewer
             this.textBoxDurationInData = new System.Windows.Forms.TextBox();
             this.textBoxNrSamplesInData = new System.Windows.Forms.TextBox();
             this.textBoxFsInData = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioButtonLockX = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButtonNeither = new System.Windows.Forms.RadioButton();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxFileName
             // 
-            this.textBoxFileName.Location = new System.Drawing.Point(80, 39);
+            this.textBoxFileName.Location = new System.Drawing.Point(6, 23);
             this.textBoxFileName.Name = "textBoxFileName";
-            this.textBoxFileName.Size = new System.Drawing.Size(302, 26);
+            this.textBoxFileName.Size = new System.Drawing.Size(411, 26);
             this.textBoxFileName.TabIndex = 0;
             this.textBoxFileName.Text = "C:\\Users\\yngve\\Documents\\demo.wav";
             this.textBoxFileName.MouseUp += new System.Windows.Forms.MouseEventHandler(this.textBoxFileName_MouseUp);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(76, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Selected file";
-            // 
             // buttonLoadWav
             // 
-            this.buttonLoadWav.Location = new System.Drawing.Point(388, 33);
+            this.buttonLoadWav.Location = new System.Drawing.Point(434, 17);
             this.buttonLoadWav.Name = "buttonLoadWav";
             this.buttonLoadWav.Size = new System.Drawing.Size(75, 32);
             this.buttonLoadWav.TabIndex = 2;
@@ -90,15 +87,15 @@ namespace WavFileViewer
             this.formsPlotTime.Location = new System.Drawing.Point(14, 78);
             this.formsPlotTime.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.formsPlotTime.Name = "formsPlotTime";
-            this.formsPlotTime.Size = new System.Drawing.Size(856, 256);
+            this.formsPlotTime.Size = new System.Drawing.Size(856, 316);
             this.formsPlotTime.TabIndex = 3;
             // 
             // formsPlotFrequency
             // 
-            this.formsPlotFrequency.Location = new System.Drawing.Point(14, 342);
+            this.formsPlotFrequency.Location = new System.Drawing.Point(14, 372);
             this.formsPlotFrequency.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.formsPlotFrequency.Name = "formsPlotFrequency";
-            this.formsPlotFrequency.Size = new System.Drawing.Size(856, 284);
+            this.formsPlotFrequency.Size = new System.Drawing.Size(856, 334);
             this.formsPlotFrequency.TabIndex = 7;
             // 
             // groupBox1
@@ -111,7 +108,7 @@ namespace WavFileViewer
             this.groupBox1.Controls.Add(this.textBox_freq);
             this.groupBox1.Controls.Add(this.textBox_duration);
             this.groupBox1.Controls.Add(this.textBox_fs);
-            this.groupBox1.Location = new System.Drawing.Point(878, 372);
+            this.groupBox1.Location = new System.Drawing.Point(866, 473);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(240, 190);
             this.groupBox1.TabIndex = 12;
@@ -202,7 +199,7 @@ namespace WavFileViewer
             this.groupBox2.Controls.Add(this.textBoxDurationInData);
             this.groupBox2.Controls.Add(this.textBoxNrSamplesInData);
             this.groupBox2.Controls.Add(this.textBoxFsInData);
-            this.groupBox2.Location = new System.Drawing.Point(878, 98);
+            this.groupBox2.Location = new System.Drawing.Point(872, 104);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(240, 190);
             this.groupBox2.TabIndex = 18;
@@ -273,18 +270,75 @@ namespace WavFileViewer
             this.textBoxFsInData.Size = new System.Drawing.Size(56, 26);
             this.textBoxFsInData.TabIndex = 13;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.textBoxFileName);
+            this.groupBox3.Controls.Add(this.buttonLoadWav);
+            this.groupBox3.Location = new System.Drawing.Point(81, 16);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(515, 55);
+            this.groupBox3.TabIndex = 19;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Wav file selection";
+            // 
+            // radioButtonLockX
+            // 
+            this.radioButtonLockX.AutoSize = true;
+            this.radioButtonLockX.Location = new System.Drawing.Point(6, 25);
+            this.radioButtonLockX.Name = "radioButtonLockX";
+            this.radioButtonLockX.Size = new System.Drawing.Size(110, 24);
+            this.radioButtonLockX.TabIndex = 20;
+            this.radioButtonLockX.Text = "Lock x axis";
+            this.radioButtonLockX.UseVisualStyleBackColor = true;
+            this.radioButtonLockX.CheckedChanged += new System.EventHandler(this.radioButtonLockX_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(6, 55);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(110, 24);
+            this.radioButton2.TabIndex = 21;
+            this.radioButton2.Text = "Lock y axis";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // radioButtonNeither
+            // 
+            this.radioButtonNeither.AutoSize = true;
+            this.radioButtonNeither.Checked = true;
+            this.radioButtonNeither.Location = new System.Drawing.Point(6, 85);
+            this.radioButtonNeither.Name = "radioButtonNeither";
+            this.radioButtonNeither.Size = new System.Drawing.Size(85, 24);
+            this.radioButtonNeither.TabIndex = 22;
+            this.radioButtonNeither.TabStop = true;
+            this.radioButtonNeither.Text = "Neither";
+            this.radioButtonNeither.UseVisualStyleBackColor = true;
+            this.radioButtonNeither.CheckedChanged += new System.EventHandler(this.radioButtonNeither_CheckedChanged);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.radioButtonLockX);
+            this.groupBox5.Controls.Add(this.radioButton2);
+            this.groupBox5.Controls.Add(this.radioButtonNeither);
+            this.groupBox5.Location = new System.Drawing.Point(866, 330);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(200, 120);
+            this.groupBox5.TabIndex = 24;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Select zoom axis";
+            // 
             // WavFileViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1134, 671);
+            this.ClientSize = new System.Drawing.Size(1134, 719);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.formsPlotFrequency);
             this.Controls.Add(this.formsPlotTime);
-            this.Controls.Add(this.buttonLoadWav);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxFileName);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WavFileViewerForm";
             this.Text = "WavFileViewer";
@@ -292,15 +346,17 @@ namespace WavFileViewer
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.TextBox textBoxFileName;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonLoadWav;
         private ScottPlot.FormsPlot formsPlotTime;
         private ScottPlot.FormsPlot formsPlotFrequency;
@@ -322,6 +378,11 @@ namespace WavFileViewer
         private System.Windows.Forms.TextBox textBoxNrSamplesInData;
         private System.Windows.Forms.TextBox textBoxFsInData;
         private System.Windows.Forms.Button buttonAppend;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RadioButton radioButtonLockX;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButtonNeither;
+        private System.Windows.Forms.GroupBox groupBox5;
     }
 }
 

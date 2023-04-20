@@ -1,21 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using NAudio.Wave;
+using System.Timers;
 
 namespace WavFileViewer
 {
     public partial class WavFileViewerForm : Form
     {
-
         // Global variable for WavFile
         private WavFile wavFile;
 
@@ -27,7 +19,7 @@ namespace WavFileViewer
         private void textBoxFileName_MouseUp(object sender, MouseEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            // of1.Filter = "Audio files (*.wav)|*.txt|All files (*.*)|*.*'";
+            openFileDialog.Filter = "Audio files (*.wav)|*.wav|All files (*.*)|*.*'";
 
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -87,6 +79,7 @@ namespace WavFileViewer
             formsPlotFrequency.Plot.YLabel("Magnitude");
             formsPlotFrequency.Plot.Title("Frequency representation");
             formsPlotFrequency.Refresh();
+            formsPlotFrequency.Plot.YAxis.LockLimits(true);
         }
 
         /// <summary>
@@ -171,6 +164,54 @@ namespace WavFileViewer
                 this.wavFile = new WavFile(signal_2, fs);
                 this.UpdateSignalPlot(this.wavFile, 100);
                 this.UpdateFrequencyPlot(this.wavFile);
+            }
+        }
+
+        private void radioButtonNeither_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.radioButtonNeither.Checked)
+            {
+                this.formsPlotFrequency.Plot.YAxis.LockLimits(false);
+                this.formsPlotFrequency.Plot.XAxis.LockLimits(false);
+                this.formsPlotFrequency.Plot.XAxis.LockLimits(false);
+                this.formsPlotFrequency.Plot.XAxis.LockLimits(false);
+
+                this.formsPlotTime.Plot.YAxis.LockLimits(false);
+                this.formsPlotTime.Plot.XAxis.LockLimits(false);
+                this.formsPlotTime.Plot.XAxis.LockLimits(false);
+                this.formsPlotTime.Plot.XAxis.LockLimits(false);
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.radioButton2.Checked)
+            {
+                this.formsPlotFrequency.Plot.YAxis.LockLimits(true);
+                this.formsPlotFrequency.Plot.XAxis.LockLimits(true);
+                this.formsPlotFrequency.Plot.XAxis.LockLimits(false);
+                this.formsPlotFrequency.Plot.XAxis.LockLimits(false);
+
+                this.formsPlotTime.Plot.YAxis.LockLimits(true);
+                this.formsPlotTime.Plot.XAxis.LockLimits(true);
+                this.formsPlotTime.Plot.XAxis.LockLimits(false);
+                this.formsPlotTime.Plot.XAxis.LockLimits(false);
+            }
+        }
+
+        private void radioButtonLockX_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.radioButtonLockX.Checked)
+            {
+                this.formsPlotFrequency.Plot.YAxis.LockLimits(false);
+                this.formsPlotFrequency.Plot.XAxis.LockLimits(false);
+                this.formsPlotFrequency.Plot.XAxis.LockLimits(true);
+                this.formsPlotFrequency.Plot.XAxis.LockLimits(true);
+
+                this.formsPlotTime.Plot.YAxis.LockLimits(false);
+                this.formsPlotTime.Plot.XAxis.LockLimits(false);
+                this.formsPlotTime.Plot.XAxis.LockLimits(true);
+                this.formsPlotTime.Plot.XAxis.LockLimits(true);
             }
         }
     }
