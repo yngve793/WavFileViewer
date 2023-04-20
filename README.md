@@ -34,7 +34,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![WaveFileViewer](https://user-images.githubusercontent.com/79855565/232421697-d357e424-5e14-4cf0-9044-b75e893a5092.png)
+![WaveFileViewer](https://user-images.githubusercontent.com/79855565/233305031-a977a6da-4869-4e36-972b-82cb395ce09a.png)
+
 
 
 Windows application capable of plotting *.wav file signal and the derived Fourier transform of the signal. 
